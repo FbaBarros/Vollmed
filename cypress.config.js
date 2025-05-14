@@ -29,7 +29,7 @@ module.exports = defineConfig({
       "requestMode": true
     },
 
-    defaultCommandTimeout: 60000
+    defaultCommandTimeout: 6000
 
   },
 
