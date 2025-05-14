@@ -18,7 +18,7 @@ module.exports = defineConfig({
       json: false,
       timestamp: "mmddyyyy_HHMMss"
     },
-    projectId: "8gi3z6", //Insira a projectId pela fornecida no seu Cypress Cloud
+    projectId: "m2vbft", //Insira a projectId pela fornecida no seu Cypress Cloud
     defaultCommandTimeout: 60000,
     env:{
       "email": "clinica@gmail.com",
@@ -28,9 +28,5 @@ module.exports = defineConfig({
       "api_especialista": "http://localhost:8080/especialista",
       "requestMode": true
     },
-
-    defaultCommandTimeout: 6000
-
-  },
-
+  }
 });
