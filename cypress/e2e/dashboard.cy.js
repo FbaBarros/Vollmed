@@ -1,5 +1,6 @@
 describe('Usuário logado na página de dashboard', () => {
     beforeEach(() => {
+        cy.fixture('especialistas.json').as('especialistas')
         cy.login(Cypress.env('email'), Cypress.env('senha'))
     })
 
@@ -13,10 +14,7 @@ describe('Usuário logado na página de dashboard', () => {
             cy.visit('/dashboard')
             cy.url().should('eq', 'http://localhost:3000/dashboard')
             cy.contains('Cadastrar especialista').should('be.visible').click()
-
-
         })
-
     })
 
     context('Modal de cadastro de especialista', () => {
@@ -28,19 +26,12 @@ describe('Usuário logado na página de dashboard', () => {
 
         it('Seleciona o botão checkbox "Atende por plano?" para visualizar os planos de saúde', () => {
             cy.visit('/dashboard')
-            cy.contains('Cadastrar especialista').should('be.visible').click()
+            cy.contains('Cadastrar especialist').should('be.visible').click()
             cy.get('[type="checkbox"]').check()
             cy.get('form').find('input[type="checkbox"]').should('be.checked').and('not.be.disabled')
             cy.get('[type="checkbox"]').check(['Sulamerica', 'Unimed', 'Bradesco'])
         })
 
-        it('Seleciona o botão checkbox "Atende por plano?" para visualizar os planos de saúde', () => {
-            cy.visit('/dashboard')
-            cy.contains('Cadastrar especialista').should('be.visible').click()
-            cy.get('[type="checkbox"]').check()
-            cy.get('form').find('input[type="checkbox"]').should('be.checked').and('not.be.disabled')
-            cy.get('[type="checkbox"]').check(['Sulamerica', 'Unimed', 'Bradesco'])
-        })
         it.only('Seleciona o botão checkbox "Atende por plano?" após preenchimento do formulário para visualizar os planos de saúde', () => {
             cy.get('@especialistas').then((dados) => {
                 const especialista = dados.especialistas[0];
@@ -61,12 +52,10 @@ describe('Usuário logado na página de dashboard', () => {
                 cy.get('[type="checkbox"]').check()
                 cy.get('[type="checkbox"]').last().scrollIntoView({ easing: 'linear' })
 
-                cy.get('.MuiFormGroup-root').children().each(($checkbox) => {
+                cy.get('.MuiFormGroup-root').each(($checkbox) => {
                     cy.wrap($checkbox).should('be.visible')
                 })
             })
         })
-
     })
-
 })

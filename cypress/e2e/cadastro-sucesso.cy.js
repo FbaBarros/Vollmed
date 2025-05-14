@@ -4,7 +4,7 @@ describe('Página de cadastro', () => {
         cy.visit('/');
     })
 
-    context('Testes na página de cadastro', () => {
+    context('Verifica redirecionamento de página', () => {
         it('Clica no link "Cadastra-se" e redireciona para a página de cadastro da clínica', () => {
             cy.get('[href="/cadastro"]').click();
             cy.location('pathname').should('equal', '/cadastro')
